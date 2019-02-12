@@ -3,7 +3,7 @@
     <b-col cols="12">
       <h2>
         Add Board
-        <b-link href="#/">(Board List)</b-link>
+        <b-link href="/">(Board List)</b-link>
       </h2>
       <b-jumbotron>
         <b-form @submit="onSubmit">
