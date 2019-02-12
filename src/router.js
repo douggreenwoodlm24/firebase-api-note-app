@@ -1,6 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+//Firebase imports
+import BoardList from "@/components/BoardList";
+import ShowBoard from "@/components/ShowBoard";
+import AddBoard from "@/components/AddBoard";
+import EditBoard from "@/components/EditBoard";
 
 Vue.use(Router);
 
@@ -10,17 +14,23 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "BoardList",
+      component: BoardList
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      path: "/show-board/:id",
+      name: "ShowBoard",
+      component: ShowBoard
+    },
+    {
+      path: "/add-board",
+      name: "AddBoard",
+      component: AddBoard
+    },
+    {
+      path: "/edit-board/:id",
+      name: "EditBoard",
+      component: EditBoard
     }
   ]
 });
