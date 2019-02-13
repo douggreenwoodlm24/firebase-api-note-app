@@ -2,10 +2,10 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Board List
-        <b-link href="/add-board">(Add Board)</b-link>
+        Note List
+        <b-link href="/add-note">(Add Note)</b-link>
       </h2>
-      <b-table striped hover :items="boards" :fields="fields">
+      <b-table striped hover :items="notes" :fields="fields">
         <template slot="actions" scope="row">
           <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
         </template>
@@ -19,23 +19,23 @@ import firebase from "../Firebase";
 import router from "../router";
 
 export default {
-  name: "BoardList",
+  name: "NoteList",
   data() {
     return {
       fields: {
         title: { label: "Title", sortable: true, class: "text-left" },
         actions: { label: "Action", class: "text-center" }
       },
-      boards: [],
+      notes: [],
       errors: [],
-      ref: firebase.firestore().collection("boards")
+      ref: firebase.firestore().collection("notes")
     };
   },
   created() {
     this.ref.onSnapshot(querySnapshot => {
-      this.boards = [];
+      this.notes = [];
       querySnapshot.forEach(doc => {
-        this.boards.push({
+        this.notes.push({
           key: doc.id,
           title: doc.data().title
         });
@@ -43,8 +43,8 @@ export default {
     });
   },
   methods: {
-    details(board) {
-      router.push({ name: "ShowBoard", params: { id: board.key } });
+    details(note) {
+      router.push({ name: "ShowNote", params: { id: note.key } });
     }
   }
 };

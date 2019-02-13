@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 //Firebase imports
-import BoardList from "@/components/BoardList";
-import ShowBoard from "@/components/ShowBoard";
-import AddBoard from "@/components/AddBoard";
-import EditBoard from "@/components/EditBoard";
+import NoteList from "@/components/NoteList";
+import ShowNote from "@/components/ShowNote";
+import AddNote from "@/components/AddNote";
+import EditNote from "@/components/EditNote";
 
 Vue.use(Router);
 
@@ -14,23 +14,23 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "BoardList",
-      component: BoardList
+      name: "NoteList",
+      component: NoteList
     },
     {
-      path: "/show-board/:id",
-      name: "ShowBoard",
-      component: ShowBoard
+      path: "/show-note/:id",
+      name: "ShowNote",
+      component: ShowNote
     },
     {
-      path: "/add-board",
-      name: "AddBoard",
-      component: AddBoard
+      path: "/add-note",
+      name: "AddNote",
+      component: AddNote
     },
     {
-      path: "/edit-board/:id",
-      name: "EditBoard",
-      component: EditBoard
+      path: "/edit-note/:id",
+      name: "EditNote",
+      component: EditNote
     }
   ]
 });

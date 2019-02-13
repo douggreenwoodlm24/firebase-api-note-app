@@ -2,8 +2,8 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Add Board
-        <b-link href="/">(Board List)</b-link>
+        Add Note
+        <b-link href="/">(Note List)</b-link>
       </h2>
       <b-jumbotron>
         <b-form @submit="onSubmit">
@@ -14,7 +14,7 @@
             breakpoint="md"
             label="Enter Title"
           >
-            <b-form-input id="title" v-model.trim="board.title"></b-form-input>
+            <b-form-input id="title" v-model.trim="note.title"></b-form-input>
           </b-form-group>
           <b-form-group
             id="fieldsetHorizontal"
@@ -25,11 +25,11 @@
           >
             <b-form-textarea
               id="description"
-              v-model="board.description"
+              v-model="note.description"
               placeholder="Enter something"
               :rows="2"
               :max-rows="6"
-              >{{ board.description }}</b-form-textarea
+              >{{ note.description }}</b-form-textarea
             >
           </b-form-group>
           <b-form-group
@@ -39,10 +39,7 @@
             breakpoint="md"
             label="Enter Author"
           >
-            <b-form-input
-              id="author"
-              v-model.trim="board.author"
-            ></b-form-input>
+            <b-form-input id="author" v-model.trim="note.author"></b-form-input>
           </b-form-group>
           <b-button type="submit" variant="primary">Save</b-button>
         </b-form>
@@ -56,11 +53,11 @@ import firebase from "../Firebase";
 import router from "../router";
 
 export default {
-  name: "AddBoard",
+  name: "AddNote",
   data() {
     return {
-      ref: firebase.firestore().collection("boards"),
-      board: {}
+      ref: firebase.firestore().collection("notes"),
+      note: {}
     };
   },
   methods: {
@@ -68,13 +65,13 @@ export default {
       evt.preventDefault();
 
       this.ref
-        .add(this.board)
+        .add(this.note)
         .then(docRef => {
-          this.board.title = "";
-          this.board.description = "";
-          this.board.author = "";
+          this.note.title = "";
+          this.note.description = "";
+          this.note.author = "";
           router.push({
-            name: "BoardList"
+            name: "NoteList"
           });
         })
         .catch(error => {

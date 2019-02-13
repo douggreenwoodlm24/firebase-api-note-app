@@ -2,9 +2,9 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Board
-        <router-link :to="{ name: 'ShowBoard', params: { id: key } }"
-          >(Show Board)</router-link
+        Edit Note
+        <router-link :to="{ name: 'ShowNote', params: { id: key } }"
+          >(Show Note)</router-link
         >
       </h2>
       <b-jumbotron>
@@ -16,7 +16,7 @@
             breakpoint="md"
             label="Enter Title"
           >
-            <b-form-input id="title" v-model.trim="board.title"></b-form-input>
+            <b-form-input id="title" v-model.trim="note.title"></b-form-input>
           </b-form-group>
           <b-form-group
             id="fieldsetHorizontal"
@@ -27,11 +27,11 @@
           >
             <b-form-textarea
               id="description"
-              v-model="board.description"
+              v-model="note.description"
               placeholder="Enter something"
               :rows="2"
               :max-rows="6"
-              >{{ board.description }}</b-form-textarea
+              >{{ note.description }}</b-form-textarea
             >
           </b-form-group>
           <b-form-group
@@ -41,10 +41,7 @@
             breakpoint="md"
             label="Enter Author"
           >
-            <b-form-input
-              id="author"
-              v-model.trim="board.author"
-            ></b-form-input>
+            <b-form-input id="author" v-model.trim="note.author"></b-form-input>
           </b-form-group>
           <b-button type="submit" variant="primary">Update</b-button>
         </b-form>
@@ -58,21 +55,21 @@ import firebase from "../Firebase";
 import router from "../router";
 
 export default {
-  name: "EditBoard",
+  name: "EditNote",
   data() {
     return {
       key: this.$route.params.id,
-      board: {}
+      note: {}
     };
   },
   created() {
     const ref = firebase
       .firestore()
-      .collection("boards")
+      .collection("notes")
       .doc(this.$route.params.id);
     ref.get().then(doc => {
       if (doc.exists) {
-        this.board = doc.data();
+        this.note = doc.data();
       } else {
         alert("No such document!");
       }
@@ -83,17 +80,17 @@ export default {
       evt.preventDefault();
       const updateRef = firebase
         .firestore()
-        .collection("boards")
+        .collection("notes")
         .doc(this.$route.params.id);
       updateRef
-        .set(this.board)
+        .set(this.note)
         .then(docRef => {
           this.key = "";
-          this.board.title = "";
-          this.board.description = "";
-          this.board.author = "";
+          this.note.title = "";
+          this.note.description = "";
+          this.note.author = "";
           router.push({
-            name: "ShowBoard",
+            name: "ShowNote",
             params: { id: this.$route.params.id }
           });
         })

@@ -2,23 +2,23 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Board
-        <b-link href="/">(Board List)</b-link>
+        Edit Note
+        <b-link href="/">(Note List)</b-link>
       </h2>
       <b-jumbotron>
         <template slot="header">
-          {{ board.title }}
+          {{ note.title }}
         </template>
         <template slot="lead">
-          Title: {{ board.title }}<br />
-          Description: {{ board.description }}<br />
-          Author: {{ board.author }}<br />
+          Title: {{ note.title }}<br />
+          Description: {{ note.description }}<br />
+          Author: {{ note.author }}<br />
         </template>
         <hr class="my-4" />
-        <b-btn class="edit-btn" variant="success" @click.stop="editboard(key)"
+        <b-btn class="edit-btn" variant="success" @click.stop="editnote(key)"
           >Edit</b-btn
         >
-        <b-btn variant="danger" @click.stop="deleteboard(key)">Delete</b-btn>
+        <b-btn variant="danger" @click.stop="deletenote(key)">Delete</b-btn>
       </b-jumbotron>
     </b-col>
   </b-row>
@@ -29,43 +29,43 @@ import firebase from "../Firebase";
 import router from "../router";
 
 export default {
-  name: "ShowBoard",
+  name: "ShowNote",
   data() {
     return {
       key: "",
-      board: {}
+      note: {}
     };
   },
   created() {
     const ref = firebase
       .firestore()
-      .collection("boards")
+      .collection("notes")
       .doc(this.$route.params.id);
     ref.get().then(doc => {
       if (doc.exists) {
         this.key = doc.id;
-        this.board = doc.data();
+        this.note = doc.data();
       } else {
         alert("No such document!");
       }
     });
   },
   methods: {
-    editboard(id) {
+    editnote(id) {
       router.push({
-        name: "EditBoard",
+        name: "EditNote",
         params: { id: id }
       });
     },
-    deleteboard(id) {
+    deletenote(id) {
       firebase
         .firestore()
-        .collection("boards")
+        .collection("notes")
         .doc(id)
         .delete()
         .then(() => {
           router.push({
-            name: "BoardList"
+            name: "NoteList"
           });
         })
         .catch(error => {
