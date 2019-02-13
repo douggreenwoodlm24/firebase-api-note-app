@@ -11,7 +11,7 @@
         </template>
         <template slot="lead">
           Title: {{ note.title }}<br />
-          Description: {{ note.description }}<br />
+          Note: {{ note.notetext }}<br />
           Author: {{ note.author }}<br />
         </template>
         <hr class="my-4" />
@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import firebase from "../Firebase";
-import router from "../router";
+import firebase from "../../Firebase";
+import router from "../../router";
 
 export default {
   name: "ShowNote",

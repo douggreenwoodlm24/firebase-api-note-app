@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 //Firebase imports
-import NoteList from "@/components/NoteList";
-import ShowNote from "@/components/ShowNote";
-import AddNote from "@/components/AddNote";
-import EditNote from "@/components/EditNote";
+import NoteList from "@/components/notes/NoteList";
+import ShowNote from "@/components/notes/ShowNote";
+import AddNote from "@/components/notes/AddNote";
+import EditNote from "@/components/notes/EditNote";
 
 Vue.use(Router);
 

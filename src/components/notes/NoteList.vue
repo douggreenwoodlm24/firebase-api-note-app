@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import firebase from "../Firebase";
-import router from "../router";
+import firebase from "../../Firebase";
+import router from "../../router";
 
 export default {
   name: "NoteList",
@@ -24,6 +24,7 @@ export default {
     return {
       fields: {
         title: { label: "Title", sortable: true, class: "text-left" },
+        notetext: { label: "Note", class: "text-left" },
         actions: { label: "Action", class: "text-center" }
       },
       notes: [],
@@ -37,7 +38,8 @@ export default {
       querySnapshot.forEach(doc => {
         this.notes.push({
           key: doc.id,
-          title: doc.data().title
+          title: doc.data().title,
+          notetext: doc.data().notetext
         });
       });
     });
