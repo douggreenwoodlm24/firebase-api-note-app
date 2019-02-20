@@ -1,27 +1,43 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Edit Note
-        <b-link href="/">(Note List)</b-link>
-      </h2>
-      <b-jumbotron>
-        <template slot="header">
-          {{ note.title }}
-        </template>
-        <template slot="lead">
-          Title: {{ note.title }}<br />
-          Note: {{ note.notetext }}<br />
-          Author: {{ note.author }}<br />
-        </template>
-        <hr class="my-4" />
-        <b-btn class="edit-btn" variant="success" @click.stop="editnote(key)"
-          >Edit</b-btn
-        >
-        <b-btn variant="danger" @click.stop="deletenote(key)">Delete</b-btn>
-      </b-jumbotron>
-    </b-col>
-  </b-row>
+  <v-container>
+    <!-- <b-row>
+      <b-col cols="12">
+        <h2>
+          Edit Note
+          <b-link href="/">(Note List)</b-link>
+        </h2>
+        <b-jumbotron>
+          <template slot="header">
+            {{ note.title }}
+          </template>
+          <template slot="lead">
+            Title: {{ note.title }}<br />
+            Note: {{ note.notetext }}<br />
+            Author: {{ note.author }}<br />
+          </template>
+          <hr class="my-4" />
+          <b-btn class="edit-btn" variant="success" @click.stop="editnote(key)"
+            >Edit</b-btn
+          >
+          <b-btn variant="danger" @click.stop="deletenote(key)">Delete</b-btn>
+        </b-jumbotron>
+      </b-col>
+    </b-row> -->
+
+    <h2>
+      Edit Note
+      <a href="/">(Note List)</a>
+    </h2>
+    <b-jumbotron>
+      <template slot="lead">
+        Title: {{ note.title }}<br />
+        Note: {{ note.notetext }}<br />
+        Author: {{ note.author }}<br />
+      </template>
+      <v-btn @click.stop="editnote(key)">Edit</v-btn>
+      <v-btn @click.stop="deletenote(key)">Delete</v-btn>
+    </b-jumbotron>
+  </v-container>
 </template>
 
 <script>
@@ -77,9 +93,6 @@ export default {
 </script>
 
 <style>
-.jumbotron {
-  padding: 2rem;
-}
 .edit-btn {
   margin-right: 20px;
   width: 70px;

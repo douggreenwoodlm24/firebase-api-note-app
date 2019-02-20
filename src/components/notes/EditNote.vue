@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+  <!-- <b-row>
     <b-col cols="12">
       <h2>
         Edit Note
@@ -47,7 +47,24 @@
         </b-form>
       </b-jumbotron>
     </b-col>
-  </b-row>
+  </b-row> -->
+
+  <v-form v-model="valid" @submit="onSubmit">
+    <h2>
+      Edit Note
+      <router-link :to="{ name: 'ShowNote', params: { id: key } }"
+        >(Show Note)</router-link
+      >
+    </h2>
+    <v-container>
+      <v-layout>
+        <v-flex xs12 md4>
+          <v-textarea id="title" v-model.trim="note.notetext"></v-textarea>
+          <v-btn type="submit">Save</v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-form>
 </template>
 
 <script>

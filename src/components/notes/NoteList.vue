@@ -1,17 +1,29 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Note List
-        <b-link href="/add-note">(Add Note)</b-link>
-      </h2>
-      <b-table striped hover :items="notes" :fields="fields">
-        <template slot="actions" scope="row">
-          <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
-        </template>
-      </b-table>
-    </b-col>
-  </b-row>
+  <v-container>
+    <!--<b-row>
+      <b-col cols="12">
+        <h2>
+          Note List
+          <a href="/add-note">(Add Note)</a>
+        </h2>
+         <b-table striped hover :items="notes" :fields="fields">
+          <template slot="actions" scope="row">
+            <b-btn size="sm" @click.stop="details(row.item)">Details</b-btn>
+          </template>
+        </b-table> 
+      </b-col>
+    </b-row>-->
+    <h2>
+      Note List
+      <a href="/add-note">(Add Note)</a>
+    </h2>
+    <v-data-table :items="notes">
+      <template slot="items" slot-scope="props">
+        <td>{{ props.item.notetext }}</td>
+        <td><v-btn @click.stop="details(props.item)">Details</v-btn></td>
+      </template>
+    </v-data-table>
+  </v-container>
 </template>
 
 <script>
@@ -23,9 +35,9 @@ export default {
   data() {
     return {
       fields: {
-        title: { label: "Title", sortable: true, class: "text-left" },
-        notetext: { label: "Note", class: "text-left" },
-        actions: { label: "Action", class: "text-center" }
+        title: { label: "Title" },
+        notetext: { label: "Note" },
+        actions: { label: "Action" }
       },
       notes: [],
       errors: [],
