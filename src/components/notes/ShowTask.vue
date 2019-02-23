@@ -1,28 +1,26 @@
 <template>
   <v-container>
     <h2>
-      Edit Note
-      <a href="/">(Note List)</a>
+      Edit Task
+      <a href="/">(Task List)</a>
     </h2>
     <b-jumbotron>
       <template slot="lead">
         <h2>Customer info</h2>
-        <p><strong>Customer name:</strong> {{ note.info_customername }}<br>
-          <strong>Customer email:</strong> {{ note.info_customeremail }}<br>
-          <strong>Flag:</strong> {{ note.task_flag }}<br>
-          <strong>Feedback:</strong> {{ note.fb_verbatim1 }}<br>
-          <strong>Topics:</strong> {{ note.fb_topics }}<br>
-          <strong>Will be published to:</strong> {{ note.fb_publishto }}<br></p>
+        <p><strong>Customer name:</strong> {{ task.info_customername }}<br>
+          <strong>Customer email:</strong> {{ task.info_customeremail }}<br>
+          <strong>Flag:</strong> {{ task.task_flag }}<br>
+          <strong>Feedback:</strong> {{ task.fb_verbatim1 }}<br>
+          <strong>Topics:</strong> {{ task.fb_topics }}<br>
+          <strong>Will be published to:</strong> {{ task.fb_publishto }}<br></p>
           <h2>Public reply</h2>
-        <p> {{ note.public_replytext }}</p>
-        <!-- Title: {{ note.title }}<br /> -->
+        <p> {{ task.public_replytext }}</p>
         <h2>Internal note</h2>
-        <p> {{ note.note_notetext }}</p>
-        <!-- Author: {{ note.author }}<br /> -->
+        <p> {{ task.note_notetext }}</p>
       </template>
-      <a href="/add-note">Add Note</a>
-      <v-btn @click.stop="editnote(key)">Edit</v-btn>
-      <v-btn @click.stop="deletenote(key)">Delete</v-btn>
+      <a href="/add-task">Add Task</a>
+      <v-btn @click.stop="edittask(key)">Edit</v-btn>
+      <v-btn @click.stop="deletetask(key)">Delete</v-btn>
     </b-jumbotron>
   </v-container>
 </template>
@@ -32,11 +30,11 @@ import firebase from "../../Firebase";
 import router from "../../router";
 
 export default {
-  name: "ShowNote",
+  name: "ShowTask",
   data() {
     return {
       key: "",
-      note: {}
+      task: {}
     };
   },
   created() {
@@ -47,20 +45,20 @@ export default {
     ref.get().then(doc => {
       if (doc.exists) {
         this.key = doc.id;
-        this.note = doc.data();
+        this.task = doc.data();
       } else {
         alert("No such document!");
       }
     });
   },
   methods: {
-    editnote(id) {
+    edittask(id) {
       router.push({
-        name: "EditNote",
+        name: "EditTask",
         params: { id: id }
       });
     },
-    deletenote(id) {
+    deletetask(id) {
       firebase
         .firestore()
         .collection("task")
@@ -68,7 +66,7 @@ export default {
         .delete()
         .then(() => {
           router.push({
-            name: "NoteList"
+            name: "TaskList"
           });
         })
         .catch(error => {
