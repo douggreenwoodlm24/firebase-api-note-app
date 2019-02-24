@@ -54,9 +54,7 @@ export default {
         .set(this.note)
         .then(docRef => {
           this.key = "";
-          //this.note.title = "";
           this.note.note_notetext = "";
-          //this.note.author = "";
           router.push({
             name: "ShowTask",
             params: { id: this.$route.params.taskid }
