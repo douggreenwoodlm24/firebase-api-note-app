@@ -28,11 +28,11 @@ export default {
       },
       task: [],
       errors: [],
-      ref: firebase.firestore().collection("task")
+      taskref: firebase.firestore().collection("task")
     };
   },
   created() {
-    this.ref.onSnapshot(querySnapshot => {
+    this.taskref.onSnapshot(querySnapshot => {
       this.task = [];
       querySnapshot.forEach(doc => {
         this.task.push({

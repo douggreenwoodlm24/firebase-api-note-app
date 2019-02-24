@@ -7,26 +7,6 @@
     <v-container>
       <v-layout>
         <v-flex xs12>
-            
-<!-- fb_responsedate
-fb_starscore
-fb_verbatim1
-info_customeremail
-info_customername
-info_customerphone
-info_vehiclemodel
-info_vehiclereg
-info_vehiclevin
-note_notetext
-note_timestamp
-public_publishimmediate
-public_replytext
-public_timestamp
-task_flag
-task_hold
-task_id
-task_owner
-task_status -->
           <v-textarea id="info_customername" v-model.trim="task.info_customername" placeholder="Customer name"></v-textarea>
           <v-textarea id="info_customeremail" v-model.trim="task.info_customeremail" placeholder="Customer email"></v-textarea>
           <v-textarea id="info_customerphone" v-model.trim="task.info_customerphone" placeholder="Customer phone"></v-textarea>
@@ -36,7 +16,7 @@ task_status -->
           <v-textarea id="fb_starscore" v-model.trim="task.fb_starscore" placeholder="Star score (number)"></v-textarea>
           <v-textarea id="fb_verbatim1" v-model.trim="task.fb_verbatim1" placeholder="Customer feedback (verbatim)"></v-textarea>
           <v-textarea id="task_flag" v-model.trim="task.task_flag" placeholder="Flag"></v-textarea>
-        <v-textarea id="task_owner" v-model.trim="task.task_owner" placeholder="Task owner"></v-textarea>
+        <!-- <v-textarea id="task_owner" v-model.trim="task.task_owner" placeholder="Task owner"></v-textarea> -->
         Task status: <select v-model="task.task_status">
           <option>New</option>
           <option>Open</option>
@@ -58,7 +38,7 @@ export default {
   name: "AddTask",
   data() {
     return {
-      ref: firebase.firestore().collection("task"),
+      taskref: firebase.firestore().collection("task"),
       task: {}
     };
   },
@@ -66,9 +46,9 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
 
-      this.ref
+      this.taskref
         .add(this.task)
-        .then(docRef => {
+        .then(doctaskRef => {
           this.task.info_customername = "";
           this.task.info_customeremail = "";
           this.task.info_customerphone = "";
@@ -78,7 +58,7 @@ export default {
           this.task.fb_starscore = "";
           this.task.fb_verbatim1 = "";
           this.task.task_flag = "";
-          this.task.task_owner = "";
+          //this.task.task_owner = "";
            this.task.task_status = "";
           router.push({
             name: "TaskList"

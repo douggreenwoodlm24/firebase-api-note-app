@@ -46,11 +46,11 @@ export default {
     };
   },
   created() {
-    const ref = firebase
+    const taskref = firebase
       .firestore()
       .collection("task")
       .doc(this.$route.params.id);
-    ref.get().then(doc => {
+    taskref.get().then(doc => {
       if (doc.exists) {
         this.task = doc.data();
       } else {
@@ -61,13 +61,13 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      const updateRef = firebase
+      const updatetaskRef = firebase
         .firestore()
         .collection("task")
         .doc(this.$route.params.id);
-      updateRef
+      updatetaskRef
         .set(this.task)
-        .then(docRef => {
+        .then(doctaskRef => {
           this.key = "";
           this.task.info_customername = "";
           this.task.info_customeremail = "";

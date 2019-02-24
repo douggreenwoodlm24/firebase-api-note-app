@@ -16,11 +16,8 @@
           <strong>Flag:</strong> {{ task.task_flag }}<br>
           <strong>Rating:</strong> {{ task.fb_starscore }}<br>
           <strong>Feedback:</strong> {{ task.fb_verbatim1 }}<br>
-          <!--<strong>Topics:</strong> {{ task.fb_topics }}<br>
-           <strong>Will be published to:</strong> {{ task.fb_publishto }}<br> -->
           <strong>Task owner:</strong> {{ task.task_owner }}<br></p>
           <strong>Task status:</strong> {{ task.task_status }}<br></p>
-           <!-- <a href="/add-task">Add Task</a> -->
       <v-btn @click.stop="edittask(key)">Edit Task</v-btn>
       <v-btn @click.stop="deletetask(key)">Delete Task</v-btn>
       <hr>
@@ -53,11 +50,11 @@ export default {
     };
   },
   created() {
-    const ref = firebase
+    const taskref = firebase
       .firestore()
       .collection("task")
       .doc(this.$route.params.id);
-    ref.get().then(doc => {
+    taskref.get().then(doc => {
       if (doc.exists) {
         this.key = doc.id;
         this.task = doc.data();

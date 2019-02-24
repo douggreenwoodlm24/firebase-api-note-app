@@ -47,12 +47,12 @@ export default new Router({
       component: ShowNote
     },
     {
-      path: "/add-note/:id",
+      path: "/:id/add-note/",
       name: "AddNote",
       component: AddNote
     },
     {
-      path: "/edit-note/:id",
+      path: "/:id/edit-note/",
       name: "EditNote",
       component: EditNote
     }
