@@ -22,11 +22,12 @@
       <v-btn @click.stop="deletetask(key)">Delete Task</v-btn>
       <hr>
           <h2>Public reply</h2>
+          <v-btn @click.stop="addnewpublicreply(key)">Add public reply</v-btn>
         <p> {{ task.public_replytext }}</p>
         <hr>
         <h2>Internal note</h2>
-        <a href="/add-note">Add internal note (via a href)</a>
-        <v-btn @click.stop="addnewnote(key)">Add internal note (via method)</v-btn>
+        <!-- <a href="/add-note">Add internal note (via a href)</a> -->
+        <v-btn @click.stop="addnewnote(key)">Add internal note</v-btn>
         <h4>Internal note history</h4>
         <p> {{ task.note_notetext }}</p>
       </template>
@@ -38,8 +39,8 @@
 </template>
 
 <script>
-import firebase from "../../Firebase";
-import router from "../../router";
+import firebase from "../Firebase";
+import router from "../router";
 
 export default {
   name: "ShowTask",
@@ -85,18 +86,39 @@ export default {
           alert("Error removing document: ", error);
         });
     },
+    addnewpublicreply(id) {
+      router.push({
+        name: "AddPublicReply",
+        params: { id: id }
+      });
+    },
+    editpublicreply(id) {
+      router.push({
+        name: "PublicReply",
+        params: { taskid: id }
+      });
+    },
+    deletepublicreply(id) {
+      firebase
+        .firestore()
+        .collection("task")
+        .doc(id)
+        .delete()
+        .then(() => {
+          router.push({
+            name: "ShowTask"
+          });
+        })
+        .catch(error => {
+          alert("Error removing document: ", error);
+        });
+    },
     addnewnote(id) {
       router.push({
         name: "AddNote",
         params: { id: id }
       });
     },
-    // editnote(id) {
-    //   router.push({
-    //     name: "EditNote",
-    //     params: { id: id }
-    //   });
-    // },
     editnote(id) {
       router.push({
         name: "EditNote",

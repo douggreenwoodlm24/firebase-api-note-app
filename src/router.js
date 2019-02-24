@@ -5,10 +5,14 @@ import NoteList from "@/components/notes/NoteList";
 import ShowNote from "@/components/notes/ShowNote";
 import AddNote from "@/components/notes/AddNote";
 import EditNote from "@/components/notes/EditNote";
-import TaskList from "@/components/notes/TaskList";
-import ShowTask from "@/components/notes/ShowTask";
-import AddTask from "@/components/notes/AddTask";
-import EditTask from "@/components/notes/EditTask";
+import TaskList from "@/components/TaskList";
+import ShowTask from "@/components/ShowTask";
+import AddTask from "@/components/AddTask";
+import EditTask from "@/components/EditTask";
+import PublicReplyList from "@/components/publicreply/PublicReplyList";
+import ShowPublicReply from "@/components/publicreply/ShowPublicReply";
+import AddPublicReply from "@/components/publicreply/AddPublicReply";
+import EditPublicReply from "@/components/publicreply/EditPublicReply";
 
 Vue.use(Router);
 
@@ -55,6 +59,26 @@ export default new Router({
       path: "/:id/edit-note/",
       name: "EditNote",
       component: EditNote
+    },
+    {
+      path: "/publicreply-list/",
+      name: "PublicReplyList",
+      component: PublicReplyList
+    },
+    {
+      path: "/show-publicreply/:id",
+      name: "ShowPublicReply",
+      component: ShowPublicReply
+    },
+    {
+      path: "/:id/add-publicreply/",
+      name: "AddPublicReply",
+      component: AddPublicReply
+    },
+    {
+      path: "/:id/edit-publicreply/",
+      name: "EditPublicReply",
+      component: EditPublicReply
     }
   ]
 });
