@@ -91,13 +91,19 @@ export default {
     addnewnote(id) {
       router.push({
         name: "AddNote",
-        params: { taskid: id }
+        params: { id: id }
       });
     },
+    // editnote(id) {
+    //   router.push({
+    //     name: "EditNote",
+    //     params: { id: id }
+    //   });
+    // },
     editnote(id) {
       router.push({
         name: "EditNote",
-        params: { id: id }
+        params: { taskid: id }
       });
     },
     deletenote(id) {

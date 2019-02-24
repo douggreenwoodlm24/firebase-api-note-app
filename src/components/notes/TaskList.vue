@@ -7,6 +7,7 @@
     <v-data-table :items="task">
       <template slot="items" slot-scope="props">
         <td>{{ props.item.info_customername }}</td>
+        <td>{{ props.item.note_notetext }}</td>
         <td><v-btn @click.stop="details(props.item)">Details</v-btn></td>
       </template>
     </v-data-table>
@@ -36,7 +37,8 @@ export default {
       querySnapshot.forEach(doc => {
         this.task.push({
           key: doc.id,
-          info_customername: doc.data().info_customername
+          info_customername: doc.data().info_customername,
+          note_notetext: doc.data().note_notetext
         });
       });
     });

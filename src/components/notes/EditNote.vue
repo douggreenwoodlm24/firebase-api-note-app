@@ -26,7 +26,7 @@ export default {
   name: "EditNote",
   data() {
     return {
-      key: this.$route.params.id,
+      key: this.$route.params.taskid,
       note: {}
     };
   },
@@ -34,7 +34,7 @@ export default {
     const ref = firebase
       .firestore()
       .collection("task")
-      .doc(this.$route.params.id);
+      .doc(this.$route.params.taskid);
     ref.get().then(doc => {
       if (doc.exists) {
         this.note = doc.data();
@@ -49,7 +49,7 @@ export default {
       const updateRef = firebase
         .firestore()
         .collection("task")
-        .doc(this.$route.params.id);
+        .doc(this.$route.params.taskid);
       updateRef
         .set(this.note)
         .then(docRef => {
@@ -59,7 +59,7 @@ export default {
           //this.note.author = "";
           router.push({
             name: "ShowTask",
-            params: { id: this.$route.params.id }
+            params: { id: this.$route.params.taskid }
           });
         })
         .catch(error => {
