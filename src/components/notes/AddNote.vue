@@ -1,8 +1,8 @@
 <template>
   <v-form v-model="valid" @submit="onSubmit">
     <h2>
-      Add Note
-      <a href="/">(Note List)</a>
+      Add Internal Note
+      <!-- <a href="/">(Note List)</a> -->
     </h2>
     <v-container>
       <v-layout>
@@ -34,11 +34,9 @@ export default {
       this.ref
         .add(this.note)
         .then(docRef => {
-          //this.note.title = "";
           this.note.note_notetext = "";
-          //this.note.author = "";
           router.push({
-            name: "NoteList"
+            name: "ShowTask"
           });
         })
         .catch(error => {

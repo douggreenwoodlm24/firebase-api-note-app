@@ -47,7 +47,7 @@ export default new Router({
       component: ShowNote
     },
     {
-      path: "/add-note",
+      path: "/add-note/:id",
       name: "AddNote",
       component: AddNote
     },

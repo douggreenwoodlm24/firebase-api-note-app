@@ -68,7 +68,7 @@ export default {
         .delete()
         .then(() => {
           router.push({
-            name: "NoteList"
+            name: "ShowNote"
           });
         })
         .catch(error => {

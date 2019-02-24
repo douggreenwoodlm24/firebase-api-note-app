@@ -2,10 +2,10 @@
 
   <v-form v-model="valid" @submit="onSubmit">
     <h2>
-      Edit Note
-      <router-link :to="{ name: 'ShowNote', params: { id: key } }"
+      Edit (existing) internal note
+      <!-- <router-link :to="{ name: 'ShowNote', params: { id: key } }"
         >(Show Note)</router-link
-      >
+      > -->
     </h2>
     <v-container>
       <v-layout>
@@ -58,7 +58,7 @@ export default {
           this.note.note_notetext = "";
           //this.note.author = "";
           router.push({
-            name: "ShowNote",
+            name: "ShowTask",
             params: { id: this.$route.params.id }
           });
         })

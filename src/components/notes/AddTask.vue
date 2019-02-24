@@ -37,6 +37,12 @@ task_status -->
           <v-textarea id="fb_verbatim1" v-model.trim="task.fb_verbatim1" placeholder="Customer feedback (verbatim)"></v-textarea>
           <v-textarea id="task_flag" v-model.trim="task.task_flag" placeholder="Flag"></v-textarea>
         <v-textarea id="task_owner" v-model.trim="task.task_owner" placeholder="Task owner"></v-textarea>
+        Task status: <select v-model="task.task_status">
+          <option>New</option>
+          <option>Open</option>
+          <option>Resolved</option>
+          <option>Closed</option>
+        </select>
           <v-btn type="submit">Save</v-btn>
         </v-flex>
       </v-layout>
@@ -73,6 +79,7 @@ export default {
           this.task.fb_verbatim1 = "";
           this.task.task_flag = "";
           this.task.task_owner = "";
+           this.task.task_status = "";
           router.push({
             name: "TaskList"
           });
