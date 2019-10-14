@@ -21,62 +21,62 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
+      path: "/code/firebase-api-note-app/",
       name: "TaskList",
       component: TaskList
     },
     {
-      path: "/show-task/:id",
+      path: "/code/firebase-api-note-app/show-task/:id",
       name: "ShowTask",
       component: ShowTask
     },
     {
-      path: "/add-task",
+      path: "/code/firebase-api-note-app/add-task",
       name: "AddTask",
       component: AddTask
     },
     {
-      path: "/edit-task/:id",
+      path: "/code/firebase-api-note-app/edit-task/:id",
       name: "EditTask",
       component: EditTask
     },
     {
-      path: "/note-list/",
+      path: "/code/firebase-api-note-app/note-list/",
       name: "NoteList",
       component: NoteList
     },
     {
-      path: "/show-note/:id",
+      path: "/code/firebase-api-note-app/show-note/:id",
       name: "ShowNote",
       component: ShowNote
     },
     {
-      path: "/:id/add-note/",
+      path: "/code/firebase-api-note-app/:id/add-note/",
       name: "AddNote",
       component: AddNote
     },
     {
-      path: "/:id/edit-note/",
+      path: "/code/firebase-api-note-app/:id/edit-note/",
       name: "EditNote",
       component: EditNote
     },
     {
-      path: "/publicreply-list/",
+      path: "/code/firebase-api-note-app/publicreply-list/",
       name: "PublicReplyList",
       component: PublicReplyList
     },
     {
-      path: "/show-publicreply/:id",
+      path: "/code/firebase-api-note-app/show-publicreply/:id",
       name: "ShowPublicReply",
       component: ShowPublicReply
     },
     {
-      path: "/:id/add-publicreply/",
+      path: "/code/firebase-api-note-app/:id/add-publicreply/",
       name: "AddPublicReply",
       component: AddPublicReply
     },
     {
-      path: "/:id/edit-publicreply/",
+      path: "/code/firebase-api-note-app/:id/edit-publicreply/",
       name: "EditPublicReply",
       component: EditPublicReply
     }
